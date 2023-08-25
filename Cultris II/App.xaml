@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    x:Class="Cultris_II.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="AppBackgroundColor">#122c3c</Color>
+            <Color x:Key="ItemBackgroundColor">#0b161c</Color>
+            <Color x:Key="CultrisWhite">#fefdfc</Color>
+            <Color x:Key="CultrisGray">#606e7b</Color>
+        </ResourceDictionary>
+
+        <Style ApplyToDerivedTypes="True" TargetType="NavigationPage">
+            <Setter Property="BarBackgroundColor" Value="{StaticResource ItemBackgroundColor}" />
+        </Style>
+
+        <Style x:Key="BaseStyle" TargetType="Element">
+            <Setter Property="Shell.BackgroundColor" Value="{StaticResource ItemBackgroundColor}" />
+            <Setter Property="Shell.ForegroundColor" Value="White" />
+            <Setter Property="Shell.TitleColor" Value="White" />
+            <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+            <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+            <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource ItemBackgroundColor}" />
+            <Setter Property="Shell.TabBarForegroundColor" Value="White" />
+            <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF" />
+            <Setter Property="Shell.TabBarTitleColor" Value="White" />
+        </Style>
+
+        <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
+            <Setter Property="BackgroundColor" Value="{StaticResource AppBackgroundColor}" />
+        </Style>
+
+    </Application.Resources>
+</Application>

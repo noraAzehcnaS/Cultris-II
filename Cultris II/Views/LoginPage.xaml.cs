@@ -20,11 +20,7 @@ namespace Cultris_II.Views
             var existingPages = Navigation.NavigationStack.ToList();
             foreach (var page in existingPages)
             {
-                if (page is LoginPage)
-                {
-                    //Dont  yourself lol
-                }
-                else
+                if (!(page is LoginPage))
                 {
                     Navigation.RemovePage(page);
                 }

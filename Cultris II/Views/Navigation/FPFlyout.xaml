@@ -5,7 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Flyout"
     NavigationPage.HasBackButton="False"
-    NavigationPage.HasNavigationBar="False">
+    NavigationPage.HasNavigationBar="False"
+    WidthRequest="500">
 
     <StackLayout>
         <ListView

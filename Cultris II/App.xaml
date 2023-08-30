@@ -4,32 +4,43 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <Application.Resources>
-        <ResourceDictionary>
-            <Color x:Key="AppBackgroundColor">#122c3c</Color>
-            <Color x:Key="ItemBackgroundColor">#0b161c</Color>
-            <Color x:Key="CultrisWhite">#fefdfc</Color>
-            <Color x:Key="CultrisGray">#606e7b</Color>
-        </ResourceDictionary>
+        <Color x:Key="AppBackgroundColor">#122c3c</Color>
+        <Color x:Key="ItemBackgroundColor">#0b161c</Color>
+        <Color x:Key="CultrisWhite">#fefdfc</Color>
+        <Color x:Key="CultrisGray">#606e7b</Color>
 
         <Style ApplyToDerivedTypes="True" TargetType="NavigationPage">
             <Setter Property="BarBackgroundColor" Value="{StaticResource ItemBackgroundColor}" />
         </Style>
 
-        <Style x:Key="BaseStyle" TargetType="Element">
-            <Setter Property="Shell.BackgroundColor" Value="{StaticResource ItemBackgroundColor}" />
-            <Setter Property="Shell.ForegroundColor" Value="White" />
-            <Setter Property="Shell.TitleColor" Value="White" />
-            <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
-            <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
-            <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource ItemBackgroundColor}" />
-            <Setter Property="Shell.TabBarForegroundColor" Value="White" />
-            <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF" />
-            <Setter Property="Shell.TabBarTitleColor" Value="White" />
-        </Style>
-
         <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
             <Setter Property="BackgroundColor" Value="{StaticResource AppBackgroundColor}" />
         </Style>
-
+        <Style ApplyToDerivedTypes="True" TargetType="Entry">
+            <Setter Property="TextColor" Value="LightGray" />
+            <Setter Property="PlaceholderColor" Value="Gray" />
+        </Style>
+        <Style ApplyToDerivedTypes="True" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource CultrisWhite}" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="TextColor" Value="{StaticResource CultrisWhite}" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="Green" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="{StaticResource CultrisGray}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>

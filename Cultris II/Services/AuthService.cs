@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -13,7 +11,7 @@ namespace Cultris_II.Services
 
         string GetCurrentUserId();
     }
-    public class AuthService
+    public static class AuthService
     {
         private static readonly IAuthService auth = DependencyService.Get<IAuthService>();
 

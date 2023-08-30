@@ -1,10 +1,11 @@
-﻿using Cultris_II.Services;
+﻿using Cultris_II.Droid.Dependencies;
+using Cultris_II.Services;
 using Firebase.Auth;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(Cultris_II.Droid.Dependencies.FireAuth))]
+[assembly: Dependency(typeof(FireAuth))]
 namespace Cultris_II.Droid.Dependencies
 {
     public class FireAuth : IAuthService

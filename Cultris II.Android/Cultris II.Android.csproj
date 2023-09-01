@@ -108,7 +108,9 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\milky_way.png" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cultris II\Cultris II.csproj">
       <Project>{4344319D-488C-4BCE-BCC1-095F6F91D8B7}</Project>

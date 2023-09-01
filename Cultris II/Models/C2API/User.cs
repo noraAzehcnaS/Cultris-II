@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-
+﻿
 namespace Cultris_II.Models.C2API
 {
     public class User
@@ -9,6 +8,7 @@ namespace Cultris_II.Models.C2API
         public string Created { get; set; }
         public string GravatarHash { get; set; }
         public Stats Stats { get; set; }
+        public Challenges Challenges { get; set; }
     }
 }
 

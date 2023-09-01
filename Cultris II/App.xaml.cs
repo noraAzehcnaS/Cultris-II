@@ -8,6 +8,10 @@ namespace Cultris_II
 {
     public partial class App : Application
     {
+        public static class Globals
+        {
+            public static int UpdateCount = 0;
+        } 
         public App()
         {
             InitializeComponent();

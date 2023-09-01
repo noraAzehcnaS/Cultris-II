@@ -21,25 +21,19 @@ namespace Cultris_II.Droid.Dependencies.Helpers
             return players;
         }
 
-        public static CollectionReference Picks() => User().Collection("picks");
-        public static DocumentReference User() => FirebaseFirestore.Instance.Collection("users").Document(FirebaseAuth.Instance.CurrentUser.Uid);
-        public static bool IsUserValid(DocumentSnapshot user, string key) => !string.IsNullOrEmpty(user?.GetString(key));
+        public static CollectionReference Picks() => UserByAuthId().Collection("picks");
+        public static DocumentReference UserByAuthId() => FirebaseFirestore.Instance.Collection("users").Document(FirebaseAuth.Instance.CurrentUser.Uid);
+        public static Query UserByPlayerId(string userId) => FirebaseFirestore.Instance.Collection("users").WhereEqualTo("userId", userId);
+        public static Query UserByUsername(string username) => FirebaseFirestore.Instance.Collection("users").WhereEqualTo("userId", username);
+        public static bool IsFieldValid(DocumentSnapshot user, string key) => !string.IsNullOrEmpty(user?.GetString(key));
 
-        public static HashMap FieldEntry(string field, string entry)
+        public static HashMap UserField(string username, string userId, int follows)
         {
             Dictionary<string, Object> keyValuePairs = new Dictionary<string, Object>
             {
-                { field, entry }
-            };
-            return new HashMap(keyValuePairs);
-        }
-
-        public static HashMap GetUserFields()
-        {
-            Dictionary<string, Object> keyValuePairs = new Dictionary<string, Object>
-            {
-                { "username", string.Empty },
-                { "userId", string.Empty }
+                { "username", username },
+                { "userId", userId },
+                { "follows", follows }
             };
             return new HashMap(keyValuePairs);
         }

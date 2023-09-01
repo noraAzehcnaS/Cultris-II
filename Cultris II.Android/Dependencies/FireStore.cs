@@ -18,9 +18,9 @@ namespace Cultris_II.Droid.Dependencies
             return true;
         }
 
-        public bool AddPick(string playerId)
+        public bool AddPick(string playerId, string playerName)
         {
-            Picks().Document(playerId).Set(FieldEntry("playerId",playerId));
+            Picks().Document(playerId).Set(UserField(playerName,playerId,0));
             return true;
         }
 
@@ -35,17 +35,17 @@ namespace Cultris_II.Droid.Dependencies
         public async Task<bool> IsUsernameRegistered()
         {
             var listener = new FirebaseListener<DocumentSnapshot>();
-            User().Get().AddOnCompleteListener(listener);
+            UserByAuthId().Get().AddOnCompleteListener(listener);
             DocumentSnapshot result = await listener.Task;
 
-            return IsUserValid(result, "username");
+            return IsFieldValid(result, "username");
         }
         public async Task<string> GetUserField(string key)
         {
             var listener = new FirebaseListener<DocumentSnapshot>();
-            User().Get().AddOnCompleteListener(listener);
+            UserByAuthId().Get().AddOnCompleteListener(listener);
             DocumentSnapshot result = await listener.Task;
-            if (IsUserValid(result, key))
+            if (IsFieldValid(result, key))
             {
                 return result.GetString(key);
             }
@@ -66,9 +66,8 @@ namespace Cultris_II.Droid.Dependencies
         {
             if (!string.IsNullOrEmpty(username))
             {
-                User().Set(GetUserFields());
-                User().Update("username", username);
-                Picks().Document(username).Set(GetUserFields());
+                UserByAuthId().Set(UserField(username,string.Empty,0));
+                Picks().Document(username).Set(UserField("Initializer","0",0));
                 return true;
             }
             return false;
@@ -76,7 +75,7 @@ namespace Cultris_II.Droid.Dependencies
 
         public bool RegisterUserId(string userId)
         {
-            User().Update("userId", userId);
+            UserByAuthId().Update("userId", userId);
             return true;
         }
     }

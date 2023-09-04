@@ -2,6 +2,7 @@
 using Cultris_II.ViewModels.Base;
 using Cultris_II.Views;
 using Cultris_II.Views.Navigation;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Cultris_II.ViewModels
@@ -10,31 +11,25 @@ namespace Cultris_II.ViewModels
     {
         private string email;
         private string password;
-        private bool CanLogin(bool param) => EntriesHaveText;
-        private bool CheckEntriesHaveText() => !(string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password));
+        private bool CanLogin() => !(string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password));
         public string Email
         {
             get => email;
-            set => SetProperty(ref email, value, "EntriesHaveText");
+            set => SetProperty(ref email, value,"", LoginCommand.ChangeCanExecute);
         }
         public string Password
         {
             get => password;
-            set => SetProperty(ref password, value, "EntriesHaveText");
-        }
-
-        public bool EntriesHaveText
-        {
-            get => CheckEntriesHaveText();
+            set => SetProperty(ref password, value,"", LoginCommand.ChangeCanExecute);
         }
 
         public Command LoginCommand { get; }
 
         public LoginVM()
         {
-            LoginCommand = new Command<bool>(OnLoginClicked, CanLogin);
+            LoginCommand = new Command(async() => await OnLoginClicked(), CanLogin);
         }
-        private async void OnLoginClicked(bool param)
+        private async Task OnLoginClicked()
         {
             if (await AuthService.LoginUser(email,password))
             {
@@ -47,7 +42,6 @@ namespace Cultris_II.ViewModels
                     await Navigation().PushAsync(new RegisterPage());
                 }
             }
-
         }
     }
 }

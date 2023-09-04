@@ -17,7 +17,6 @@
                 Text="{Binding Password}" />
             <Button
                 Command="{Binding LoginCommand}"
-                CommandParameter="{Binding EntriesHaveText}"
                 Text="Login"
                 VerticalOptions="Center" />
         </StackLayout>

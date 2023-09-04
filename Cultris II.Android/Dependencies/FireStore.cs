@@ -20,7 +20,7 @@ namespace Cultris_II.Droid.Dependencies
 
         public bool AddPick(string playerId, string playerName)
         {
-            Picks().Document(playerId).Set(UserField(playerName,playerId,0));
+            Picks().Document(playerName).Set(UserField(playerName,playerId,0));
             return true;
         }
 

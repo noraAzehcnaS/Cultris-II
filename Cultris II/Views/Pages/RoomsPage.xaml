@@ -1,12 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Cultris_II.Views.RoomsPage">
+<ContentPage
+    x:Class="Cultris_II.Views.RoomsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Cultris_II.ViewModels.Pages"
+    xmlns:model="clr-namespace:Cultris_II.Models.C2API">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <RefreshView
+            x:DataType="local:RoomsVM"
+            Command="{Binding LoadRoomsCommand}"
+            IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <CollectionView ItemsSource="{Binding Rooms}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout x:DataType="model:Room">
+                            <RelativeLayout>
+                                <Image
+                                    Aspect="AspectFill"
+                                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                           Property=Height}"
+                                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                          Property=Width}"
+                                    Source="{Binding ImageSource}"
+                                    WidthRequest="400" />
+                                <StackLayout Padding="20">
+                                    <Label FontSize="Large" Text="{Binding Name}" />
+                                    <Label FontSize="Micro">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Players: " />
+                                                <Span Text="{Binding Players}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label FontSize="Subtitle" Text="{Binding Mode}" />
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:RoomsVM}}, Path=RoomTappedCommand}"
+                                            CommandParameter="{Binding .}"
+                                            NumberOfTapsRequired="1" />
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </RelativeLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
     </ContentPage.Content>
 </ContentPage>

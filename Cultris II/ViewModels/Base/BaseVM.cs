@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 using Xamarin.Forms;
 
 namespace Cultris_II.ViewModels.Base
@@ -10,7 +9,7 @@ namespace Cultris_II.ViewModels.Base
     public class BaseVM : INotifyPropertyChanged
     {
         public INavigation Navigation() => Application.Current.MainPage.Navigation;
-        bool isBusy = false;
+        private bool isBusy = false;
         public bool IsBusy
         {
             get { return isBusy; }
@@ -29,8 +28,9 @@ namespace Cultris_II.ViewModels.Base
             Action onChanged = null)
         {
             if (EqualityComparer<T>.Default.Equals(backingStore, value))
+            {
                 return false;
-
+            }
             backingStore = value;
             onChanged?.Invoke();
             OnPropertyChanged(propertyName);
@@ -43,8 +43,9 @@ namespace Cultris_II.ViewModels.Base
         {
             var changed = PropertyChanged;
             if (changed == null)
-                return;
-
+            {  
+                return; 
+            }
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion

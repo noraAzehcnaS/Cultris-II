@@ -14,5 +14,6 @@ namespace Cultris_II.Models.C2API
         public object Maxplayers { get; set; }
         public int Players { get; set; }
         public Bestplayer Bestplayer { get; set; }
+        public string ImageSource { get; set; }
     }
 }

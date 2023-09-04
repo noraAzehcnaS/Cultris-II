@@ -9,16 +9,18 @@ namespace Cultris_II.ViewModels.Pages
 {
     public class ProfileVM : BaseVM
     {
-        private string imageSourceGravatar;
-        private string username;
-        private string userId;
-        private string created;
-        private string rank;
-        private string score;
-        private string winrate;
-        private string maxCombo;
-        private string maxBPM;
-        private string avgBPM;
+        private string
+            imageSourceGravatar,
+            username,
+            userId,
+            created,
+            rank,
+            score,
+            winrate,
+            maxCombo,
+            maxBPM,
+            avgBPM,
+            updatesLeft;
 
         public string ImageSourceGravatar
         {
@@ -78,23 +80,41 @@ namespace Cultris_II.ViewModels.Pages
             get => avgBPM;
             set => SetProperty(ref avgBPM, value);
         }
+        public string UpdatesLeft
+        {
+            get => updatesLeft;
+            set => SetProperty(ref updatesLeft, value);
+        }
         public Command UpdateProfile { get; }
 
         public ProfileVM()
         {
             Username = string.Empty;
             UserId = string.Empty;
-            UpdateProfile = new Command(UpdateProfileContent);
+            UpdateProfile = new Command(async() => await UpdateProfileContent(), CanUpdate);
         }
 
-        public async void SetProfileContent()
+        public async Task SetProfileContent()
         {
             Username = await DataService.GetUsername();
             UserId = await DataService.GetUserId();
-            if(!string.IsNullOrEmpty(UserId)) 
+            UpdatesLeft = GetUpdatesLeft();
+
+            if (!string.IsNullOrEmpty(UserId) && App.Globals.UpdateCount == 0) 
             {
-                SetProfileContentProperties(await C2API_Service.GetUserInfo(UserId));
+                App.Globals.CurrentUser = await C2API_Service.GetUserInfo(UserId);
             }
+
+            if(App.Globals.CurrentUser != null) 
+            {
+                SetProfileContentProperties(App.Globals.CurrentUser);
+            }
+        }
+
+        private string GetUpdatesLeft()
+        {
+            int updatesLeft = 5 - App.Globals.UpdateCount;
+            return $"Update ({updatesLeft})";
         }
 
         private void SetProfileContentProperties(User user) 
@@ -112,26 +132,32 @@ namespace Cultris_II.ViewModels.Pages
             }
         }
 
-        public async void UpdateProfileContent()
+        private bool CanUpdate()
         {
-            if(!string.IsNullOrEmpty(UserId) && App.Globals.UpdateCount < 5)
+            return (App.Globals.UpdateCount < 5);
+        }
+
+        public async Task UpdateProfileContent()
+        {
+            while (string.IsNullOrEmpty(UserId)) 
             {
-                SetProfileContentProperties(await C2API_Service.GetUserInfo(UserId));
-                App.Globals.UpdateCount++;
-            }
-            else
-            {
-                while (true)
+                await Task.Delay(500);
+                string result = await C2API_Service.GetUserIdFromGame();
+                if (!string.IsNullOrEmpty(result))
                 {
-                    await Task.Delay(500);
-                    string result = await C2API_Service.GetUserIdFromGame();
-                    if (!string.IsNullOrEmpty(result))
-                    {
-                        DataService.RegisterUserId(result);
-                        UserId = result;
-                        break;
-                    }
+                    DataService.RegisterUserId(result);
+                    UserId = result;
+                    break;
                 }
+            }
+
+            if(CanUpdate())
+            {
+                App.Globals.CurrentUser = await C2API_Service.GetUserInfo(UserId);
+                App.Globals.UpdateCount++;
+                SetProfileContentProperties(App.Globals.CurrentUser);
+                UpdateProfile.ChangeCanExecute();
+                UpdatesLeft = GetUpdatesLeft();
             }
         }
     }

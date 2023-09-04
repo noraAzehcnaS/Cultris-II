@@ -12,7 +12,6 @@
                 Text="{Binding Username}" />
             <Button
                 Command="{Binding RegisterCommand}"
-                CommandParameter="{Binding EntriesHaveText}"
                 Text="Register"
                 VerticalOptions="Center" />
         </StackLayout>

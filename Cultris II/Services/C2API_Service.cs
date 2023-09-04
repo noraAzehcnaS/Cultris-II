@@ -1,6 +1,7 @@
 ﻿using Cultris_II.Models.C2API;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -15,22 +16,9 @@ namespace Cultris_II.Services
         private const string g_API = "https://www.gravatar.com/avatar/";
         private const string g_size = "?s=800";
 
-        public static Session CurrentSession = null;
         private static readonly HttpClient client = new HttpClient();
-        public static async Task<string> GetUserIdFromGame()
-        {
-            string username = await DataService.GetUsername();
-            Uri uri = new Uri($"{API}{liveInfo}");
-            HttpResponseMessage response = await client.GetAsync(uri);
-            if (response.IsSuccessStatusCode)
-            {
-                string content = await response.Content.ReadAsStringAsync();
-                CurrentSession = JsonConvert.DeserializeObject<Session>(content);
-                string result = GetUserIdByName(username);
-                return result;
-            }
-            return string.Empty;
-        }
+        public static async Task<string> GetUserIdFromGame() => GetUserIdFromSession(await DataService.GetUsername(), await GetLiveInfo());
+        public static async Task<Session> GetSession() => await GetLiveInfo();
 
         public static async Task<User> GetUserInfo(string userId)
         {
@@ -48,9 +36,21 @@ namespace Cultris_II.Services
         {
             return $"{g_API}{hash}{g_size}";
         }
-        private static string GetUserIdByName(string username) 
+
+        private static async Task<Session> GetLiveInfo()
         {
-            return CurrentSession?
+            Uri uri = new Uri($"{API}{liveInfo}");
+            HttpResponseMessage response = await client.GetAsync(uri);
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<Session>(content);
+            }
+            return null;
+        }
+        private static string GetUserIdFromSession(string username, Session session) 
+        {
+            return session?
                 .Players?
                 .FirstOrDefault(p => p.Name.Equals(username))?
                 .Id.ToString()

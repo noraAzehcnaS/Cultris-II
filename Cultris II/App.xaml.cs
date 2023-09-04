@@ -1,8 +1,6 @@
-﻿using Cultris_II.Services;
+﻿using Cultris_II.Models.C2API;
 using Cultris_II.Views;
-using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Cultris_II
 {
@@ -10,7 +8,8 @@ namespace Cultris_II
     {
         public static class Globals
         {
-            public static int UpdateCount = 0;
+            public static User CurrentUser;
+            public static int UpdateCount;
         } 
         public App()
         {
@@ -20,6 +19,7 @@ namespace Cultris_II
 
         protected override void OnStart()
         {
+            Globals.UpdateCount = 0;
         }
 
         protected override void OnSleep()

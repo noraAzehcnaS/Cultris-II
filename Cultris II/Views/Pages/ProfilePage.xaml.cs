@@ -18,7 +18,7 @@ namespace Cultris_II.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            viewModel.SetProfileContent();
+            _ = viewModel.SetProfileContent();
         }
     }
 }

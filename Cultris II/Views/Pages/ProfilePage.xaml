@@ -2,9 +2,10 @@
 <ContentPage
     x:Class="Cultris_II.Views.ProfilePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Cultris_II.ViewModels.Pages">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout x:DataType="local:ProfileVM">
             <AbsoluteLayout HeightRequest="220">
                 <Image
                     AbsoluteLayout.LayoutBounds="0.5,0.5,1,1"

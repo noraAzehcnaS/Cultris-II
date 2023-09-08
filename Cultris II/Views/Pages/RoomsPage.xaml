@@ -21,8 +21,7 @@
                                                                                            Property=Height}"
                                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
                                                                                           Property=Width}"
-                                    Source="{Binding ImageSource}"
-                                    WidthRequest="400" />
+                                    Source="{Binding ImageSource}" />
                                 <StackLayout Padding="20">
                                     <Label FontSize="Large" Text="{Binding Name}" />
                                     <Label FontSize="Micro">

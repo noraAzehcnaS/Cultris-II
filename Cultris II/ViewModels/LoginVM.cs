@@ -2,6 +2,7 @@
 using Cultris_II.ViewModels.Base;
 using Cultris_II.Views;
 using Cultris_II.Views.Navigation;
+using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -31,15 +32,27 @@ namespace Cultris_II.ViewModels
         }
         private async Task OnLoginClicked()
         {
-            if (await AuthService.LoginUser(email,password))
+            bool isLoggedIn = false;
+            try
             {
-                if(await DataService.IsUsernameRegistered())
+                isLoggedIn = await AuthService.LoginUser(email, password);
+            }
+            catch(Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Login Failed", ex.Message,"OK");
+            }
+            finally 
+            { 
+                if (isLoggedIn)
                 {
-                    await Navigation().PushAsync(new FP());
-                }
-                else
-                {
-                    await Navigation().PushAsync(new RegisterPage());
+                    if (await DataService.IsUsernameRegistered())
+                    {
+                        await Navigation().PushAsync(new FP());
+                    }
+                    else
+                    {
+                        await Navigation().PushAsync(new RegisterPage());
+                    }
                 }
             }
         }

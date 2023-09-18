@@ -17,15 +17,7 @@ namespace Cultris_II.Services
 
         public static async Task<bool> LoginUser(string email, string password)
         {
-            try
-            {
-                return await auth.LoginUser(email, password);
-            }
-            catch (Exception ex)
-            {
-                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
-                return false;
-            }
+            return await auth.LoginUser(email, password);
         }
 
         public static bool IsAuthenticated()

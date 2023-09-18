@@ -33,14 +33,14 @@
                                         </Label.FormattedText>
                                     </Label>
                                     <Label FontSize="Subtitle" Text="{Binding Mode}" />
-                                    <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:RoomsVM}}, Path=RoomTappedCommand}"
-                                            CommandParameter="{Binding .}"
-                                            NumberOfTapsRequired="1" />
-                                    </StackLayout.GestureRecognizers>
                                 </StackLayout>
                             </RelativeLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:RoomsVM}}, Path=RoomTappedCommand}"
+                                    CommandParameter="{Binding .}"
+                                    NumberOfTapsRequired="1" />
+                            </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

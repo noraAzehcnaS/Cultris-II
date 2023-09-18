@@ -23,7 +23,7 @@ namespace Cultris_II.ViewModels.Pages
 
             Rooms = new ObservableCollection<Room>();
             LoadRoomsCommand = new Command(async () => await LoadRooms());
-            RoomTappedCommand = new Command<Room>(OnRoomSelected);
+            RoomTappedCommand = new Command<Room>(RoomTapped);
         }
 
         public async Task LoadRooms()
@@ -61,7 +61,7 @@ namespace Cultris_II.ViewModels.Pages
             }
         }
 
-        private void OnRoomSelected(Room room)
+        private void RoomTapped(Room room)
         {
             if (room.Players > 0) 
             {
@@ -69,9 +69,14 @@ namespace Cultris_II.ViewModels.Pages
             }
         }
 
-        private List<Player> PlayersInRoom(int roomId)
+        private List<Player> PlayersInRoom(long roomId)
         {
-            return session.Players.Where(p => p.Id.Equals(roomId)).ToList();
+            return 
+                session
+                .Players
+                .Where(p => p.Room.Equals(roomId))
+                .OrderByDescending(p => p.Currentscore)
+                .ToList();
         }
     }
 }

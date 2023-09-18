@@ -3,6 +3,8 @@
     x:Class="Cultris_II.Views.Navigation.FPFlyout"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:Cultris_II.Models.Navigation"
+    xmlns:vm="clr-namespace:Cultris_II.ViewModels.Navigation"
     Title="Flyout"
     NavigationPage.HasBackButton="False"
     NavigationPage.HasNavigationBar="False"
@@ -11,6 +13,7 @@
     <StackLayout>
         <ListView
             x:Name="MenuItemsListView"
+            x:DataType="vm:FPFlyoutViewModel"
             HasUnevenRows="true"
             ItemsSource="{Binding MenuItems}"
             SeparatorVisibility="Default">
@@ -19,6 +22,7 @@
                     <ViewCell>
                         <StackLayout
                             Padding="15,10"
+                            x:DataType="model:FPFlyoutMenuItem"
                             HeightRequest="50"
                             HorizontalOptions="FillAndExpand"
                             Orientation="Horizontal">

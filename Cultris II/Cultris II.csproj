@@ -17,10 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\Modals\RoomModal.xaml">
+    <EmbeddedResource Update="Views\Modals\PlayerModal.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Pages\AboutPage.xaml">
+    <EmbeddedResource Update="Views\Modals\RoomModal.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\LoginPage.xaml">

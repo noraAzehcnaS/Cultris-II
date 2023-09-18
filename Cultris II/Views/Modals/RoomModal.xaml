@@ -13,19 +13,46 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout x:DataType="model:Player">
-
-                        <Image Source="{Binding Avatarhash}" WidthRequest="100" />
-                        <StackLayout Padding="20">
-                            <Label FontSize="Large" Text="{Binding Name}" />
-
-                            <Label FontSize="Subtitle" Text="{Binding Currentscore}" />
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:RoomVM}}, Path=PlayerTappedCommand}"
-                                    CommandParameter="{Binding .}"
-                                    NumberOfTapsRequired="1" />
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:RoomVM}}, Path=PlayerTappedCommand}"
+                                CommandParameter="{Binding .}"
+                                NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+                        <Grid
+                            Margin="20"
+                            ColumnDefinitions="90,Auto,*"
+                            ColumnSpacing="20"
+                            HorizontalOptions="FillAndExpand">
+                            <Image
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Grid.Column="0"
+                                Source="{Binding Avatarhash}"
+                                WidthRequest="80" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                FontSize="Large"
+                                HorizontalOptions="StartAndExpand"
+                                Text="{Binding Name}"
+                                VerticalOptions="End" />
+                            <Image
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                HorizontalOptions="Start"
+                                Source="{Binding Country}"
+                                VerticalOptions="Start"
+                                WidthRequest="30" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Margin="0,0,20,0"
+                                FontSize="Subtitle"
+                                HorizontalOptions="End"
+                                Text="{Binding Currentscore}"
+                                VerticalOptions="End" />
+                        </Grid>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

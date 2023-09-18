@@ -7,79 +7,9 @@ using Xamarin.Forms;
 
 namespace Cultris_II.ViewModels.Pages
 {
-    public class ProfileVM : BaseVM
+    public class ProfileVM : UserInfoBaseVM
     {
-        private string
-            imageSourceGravatar,
-            username,
-            userId,
-            created,
-            rank,
-            score,
-            winrate,
-            maxCombo,
-            maxBPM,
-            avgBPM,
-            updatesLeft;
-
-        public string ImageSourceGravatar
-        {
-            get => imageSourceGravatar;
-            set => SetProperty(ref imageSourceGravatar, value);
-        }
-        public string Username
-        {
-            get => username;
-            set => SetProperty(ref username, value);
-        }
-
-        public string UserId
-        {
-            get => userId;
-            set => SetProperty(ref userId, value);
-        }
-
-        public string Created
-        {
-            get => created;
-            set => SetProperty(ref created, value);
-        }
-
-        public string Rank
-        {
-            get => rank;
-            set => SetProperty(ref rank, value);
-        }
-
-        public string Score
-        {
-            get => score;
-            set => SetProperty(ref score, value);
-        }
-
-        public string Winrate
-        {
-            get => winrate;
-            set => SetProperty(ref winrate, value);
-        }
-
-        public string MaxCombo
-        {
-            get => maxCombo;
-            set => SetProperty(ref maxCombo, value);
-        }
-
-        public string MaxBPM
-        {
-            get => maxBPM;
-            set => SetProperty(ref maxBPM, value);
-        }
-
-        public string AvgBPM
-        {
-            get => avgBPM;
-            set => SetProperty(ref avgBPM, value);
-        }
+        private string updatesLeft;
         public string UpdatesLeft
         {
             get => updatesLeft;
@@ -119,17 +49,8 @@ namespace Cultris_II.ViewModels.Pages
 
         private void SetProfileContentProperties(User user) 
         {
-            if (user != null) 
-            {
-                Created = user.Created;
-                Rank = user.Stats.Rank.ToString();
-                Score = user.Stats.Score.ToString("0.00");
-                Winrate = (((float)user.Stats.Wins/user.Stats.PlayedRounds)*100).ToString("0.0") +"%";
-                MaxCombo = user.Stats.MaxCombo.ToString();
-                MaxBPM = user.Stats.MaxroundBpm.ToString("0.00");
-                AvgBPM = user.Stats.AvgroundBpm.ToString("0.00");
-                ImageSourceGravatar = C2API_Service.GravatarFromHash(user.GravatarHash);
-            }
+            user.GravatarHash = C2API_Service.GravatarFromHash(user.GravatarHash);
+            SetUser(user);
         }
 
         private bool CanUpdate()

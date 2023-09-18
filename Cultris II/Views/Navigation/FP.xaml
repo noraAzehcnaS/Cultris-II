@@ -13,7 +13,7 @@
     <FlyoutPage.Detail>
         <NavigationPage>
             <x:Arguments>
-                <pages:AboutPage />
+                <pages:RoomsPage />
             </x:Arguments>
         </NavigationPage>
     </FlyoutPage.Detail>

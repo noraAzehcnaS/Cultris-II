@@ -12,8 +12,6 @@ namespace Cultris_II.Services
         private const string API = "https://gewaltig.net/api/";
         private const string liveInfo = "liveInfo";
         private const string user = "user/";
-        private const string g_API = "https://www.gravatar.com/avatar/";
-        private const string g_size = "?s=800";
 
         private static readonly HttpClient client = new HttpClient();
         public static async Task<string> GetUserIdFromGame() => GetUserIdFromSession(await DataService.GetUsername(), await GetLiveInfo());
@@ -31,10 +29,8 @@ namespace Cultris_II.Services
             return null;
         }
 
-        public static string GravatarFromHash(string hash)
-        {
-            return $"{g_API}{hash}{g_size}";
-        }
+        public static string GravatarFromHash(string hash) => $"https://www.gravatar.com/avatar/{hash}?s=800";
+        public static string FlagFromCountry(string country) => $"https://flagsapi.com/{country}/flat/64.png";
 
         private static async Task<Session> GetLiveInfo()
         {

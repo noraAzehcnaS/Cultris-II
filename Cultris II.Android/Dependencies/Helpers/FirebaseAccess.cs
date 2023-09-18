@@ -1,4 +1,5 @@
 ﻿
+using Cultris_II.Models.DataService;
 using Firebase.Auth;
 using Firebase.Firestore;
 using Java.Lang;
@@ -9,31 +10,37 @@ namespace Cultris_II.Droid.Dependencies.Helpers
 {
     public static class FirebaseAccess
     {
-        public static List<string> PlayersFromQuery(QuerySnapshot query)
+        public static List<Pick> PicksFromQuery(QuerySnapshot query)
         {
-            List<string> players = new List<string>();
-            players.Clear();
+            List<Pick> picks = new List<Pick>();
+            picks.Clear();
 
             foreach (var doc in query.Documents)
             {
-                players.Add(doc.Id);
+                Pick pick = new Pick
+                {
+                    PlayerId = doc.GetString("playerId"),
+                    Name = doc.GetString("name"),
+                    Country = doc.GetString("country"),
+                    AvatarHash = doc.GetString("avatar")
+                };
+                picks.Add(pick);
             }
-            return players;
+            return picks;
         }
 
         public static CollectionReference Picks() => UserByAuthId().Collection("picks");
         public static DocumentReference UserByAuthId() => FirebaseFirestore.Instance.Collection("users").Document(FirebaseAuth.Instance.CurrentUser.Uid);
-        public static Query UserByPlayerId(string userId) => FirebaseFirestore.Instance.Collection("users").WhereEqualTo("userId", userId);
-        public static Query UserByUsername(string username) => FirebaseFirestore.Instance.Collection("users").WhereEqualTo("userId", username);
         public static bool IsFieldValid(DocumentSnapshot user, string key) => !string.IsNullOrEmpty(user?.GetString(key));
 
-        public static HashMap UserField(string username, string userId, int follows)
+        public static HashMap PickToFields(Pick pick)
         {
             Dictionary<string, Object> keyValuePairs = new Dictionary<string, Object>
             {
-                { "username", username },
-                { "userId", userId },
-                { "follows", follows }
+                { "name", pick.Name },
+                { "playerId", pick.PlayerId },
+                { "country", pick.Country },
+                { "avatar", pick.AvatarHash },
             };
             return new HashMap(keyValuePairs);
         }

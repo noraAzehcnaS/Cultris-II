@@ -1,12 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Cultris_II.Views.SubscriptionsPage">
+<ContentPage
+    x:Class="Cultris_II.Views.SubscriptionsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid
+            BackgroundColor="Blue"
+            ColumnDefinitions="*,120"
+            ColumnSpacing="20"
+            HorizontalOptions="Center"
+            RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+            RowSpacing="20"
+            VerticalOptions="Center">
+
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                BackgroundColor="Red"
+                HorizontalOptions="EndAndExpand"
+                Text="Professional Battlefield"
+                VerticalOptions="Center" />
+
+            <Label
+                Grid.Row="1"
+                Grid.Column="0"
+                BackgroundColor="Red"
+                HorizontalOptions="EndAndExpand"
+                Text="Veteran Lounge"
+                VerticalOptions="Center" />
+
+            <Label
+                Grid.Row="2"
+                Grid.Column="0"
+                BackgroundColor="Red"
+                HorizontalOptions="EndAndExpand"
+                Text="Beginner Party"
+                VerticalOptions="Center" />
+
+            <Label
+                Grid.Row="3"
+                Grid.Column="0"
+                BackgroundColor="Red"
+                HorizontalOptions="EndAndExpand"
+                Text="Cheesemageddon"
+                VerticalOptions="Center" />
+
+            <Label
+                Grid.Row="4"
+                Grid.Column="0"
+                BackgroundColor="Red"
+                HorizontalOptions="EndAndExpand"
+                Text="Teams!"
+                VerticalOptions="Center" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

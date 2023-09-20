@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Cultris_II.ViewModels.Base
 {
-    public class UserInfoBaseVM : BaseVM
+    public class UserInfoVM : BaseVM
     {
         private string imageSourceGravatar;
         private string username;
@@ -77,7 +77,7 @@ namespace Cultris_II.ViewModels.Base
             set => SetProperty(ref avgBPM, value);
         }
 
-        public UserInfoBaseVM() 
+        public UserInfoVM() 
         {
         }
 

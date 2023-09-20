@@ -5,6 +5,7 @@ using Cultris_II.Views.Navigation;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using static Cultris_II.ViewModels.Base.ButtonVM;
 
 namespace Cultris_II.ViewModels
 {
@@ -16,19 +17,25 @@ namespace Cultris_II.ViewModels
         public string Email
         {
             get => email;
-            set => SetProperty(ref email, value,"", LoginCommand.ChangeCanExecute);
+            set => SetProperty(ref email, value,"", () => LoginButton.IsEnabled = CanLogin());
         }
         public string Password
         {
             get => password;
-            set => SetProperty(ref password, value,"", LoginCommand.ChangeCanExecute);
+            set => SetProperty(ref password, value,"", () => LoginButton.IsEnabled = CanLogin());
         }
 
-        public Command LoginCommand { get; }
+        private readonly ButtonSettings loginButtonSettings = new ButtonSettings { Text = "Login", TextColor = Color.White, BackgroundColor = Color.Green };
+        public ButtonVM LoginButton { get; set; }
 
         public LoginVM()
         {
-            LoginCommand = new Command(async() => await OnLoginClicked(), CanLogin);
+            LoginButton = new ButtonVM
+            {
+                Settings = loginButtonSettings,
+                ActionCommand = async _ => await OnLoginClicked(),
+                IsEnabled = false
+            };
         }
         private async Task OnLoginClicked()
         {

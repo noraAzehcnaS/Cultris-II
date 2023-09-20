@@ -6,38 +6,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
+using static Cultris_II.ViewModels.Base.ButtonVM;
 
 namespace Cultris_II.ViewModels.Modals
 {
-    public class PlayerVM : UserInfoBaseVM
+    public class PlayerVM : UserInfoVM
     {
         private readonly string country;
 
-        public Command FUFButtonCommand { get; set; }
-
-        private Color fufButtonColor = Color.Green;
-        private string fufButtonText = "Follow";
-        public Color FUFButtonColor
-        {
-            get => fufButtonColor;
-            set => SetProperty(ref fufButtonColor, value);
-        }
-
-        public string FUFButtonText
-        {
-            get => fufButtonText;
-            set => SetProperty(ref fufButtonText, value);
-        }
+        private readonly ButtonSettings follow = new ButtonSettings {Text = "Follow", TextColor = Color.White, BackgroundColor = Color.Green };
+        private readonly ButtonSettings unfollow = new ButtonSettings { Text = "Unfollow", TextColor = Color.White, BackgroundColor = Color.Red };
+        private readonly ButtonSettings loading = new ButtonSettings { Text = "Loading Player Info", TextColor = Color.Black, BackgroundColor = Color.Gray };
+        public ButtonVM FUFButton { get; set; }
         public PlayerVM(Player player) 
         {
             UserId = player.Id.ToString();
-            country = player.Country; 
-        }
-        private bool fufButtonEnabled = false;
-        public bool FUFButtonEnabled
-        {
-            get => fufButtonEnabled;
-            set => SetProperty(ref fufButtonEnabled, value,"",FUFButtonCommand.ChangeCanExecute);
+            country = player.Country;
+            FUFButton = new ButtonVM { Settings = loading };
         }
 
         public async Task LoadUser()
@@ -50,29 +36,26 @@ namespace Cultris_II.ViewModels.Modals
                 List<Pick>picks = await DataService.GetPicks();
                 if (picks.Any(pick => pick.PlayerId.Equals(user.UserId.ToString())))
                 {
-                    FUFButtonColor = Color.Red;
-                    FUFButtonText = "Unfollow";
-                    FUFButtonCommand = new Command(UnfollowPlayer, () => FUFButtonEnabled);
+                    FUFButton.Settings = unfollow;
+                    FUFButton.ActionCommand = _ => UnfollowPlayer();
                 }
                 else 
                 {
-                    FUFButtonColor = Color.Green;
-                    FUFButtonText = "Follow";
-                    FUFButtonCommand = new Command(FollowPlayer, () => FUFButtonEnabled);
+                    FUFButton.Settings = follow;
+                    FUFButton.ActionCommand = _ => FollowPlayer();
                 }
-                FUFButtonEnabled = true;
             }
         }
 
         private void FollowPlayer()
         {
             DataService.AddPick(new Pick { Name = Username, PlayerId = UserId, AvatarHash = ImageSourceGravatar, Country = country});
-            FUFButtonEnabled = false;
+            FUFButton.IsEnabled = false;
         }
         private void UnfollowPlayer()
         {
             DataService.DeletePick(UserId);
-            FUFButtonEnabled = false;
+            FUFButton.IsEnabled = false;
         }
 
     }

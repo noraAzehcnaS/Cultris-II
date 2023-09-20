@@ -30,7 +30,7 @@
                     <VisualStateGroup x:Name="CommonStates">
                         <VisualState x:Name="Normal">
                             <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="Green" />
+                                <Setter Property="BackgroundColor" Value="{Binding Source={RelativeSource Mode=Self}, Path=BackgroundColor}" />
                             </VisualState.Setters>
                         </VisualState>
                         <VisualState x:Name="Disabled">

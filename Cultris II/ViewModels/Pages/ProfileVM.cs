@@ -4,65 +4,54 @@ using Cultris_II.ViewModels.Base;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using static Cultris_II.ViewModels.Base.ButtonVM;
 
 namespace Cultris_II.ViewModels.Pages
 {
-    public class ProfileVM : UserInfoBaseVM
+    public class ProfileVM : UserInfoVM
     {
-        private string updatesLeft;
-        public string UpdatesLeft
-        {
-            get => updatesLeft;
-            set => SetProperty(ref updatesLeft, value);
-        }
-        public Command UpdateProfile { get; }
+        private readonly ButtonSettings updateButtonSettings = new ButtonSettings { TextColor = Color.White, BackgroundColor = Color.Green };
+        public ButtonVM UpdateButton { get; set; }
 
         public ProfileVM()
         {
             Username = string.Empty;
             UserId = string.Empty;
-            UpdateProfile = new Command(async() => await UpdateProfileContent(), CanUpdate);
+            UpdateButton = new ButtonVM
+            {
+                Settings = updateButtonSettings,
+                ActionCommand = async _ => await UpdateProfileContent()
+            };
         }
 
         public async Task SetProfileContent()
         {
             Username = await DataService.GetUsername();
             UserId = await DataService.GetUserId();
-            UpdatesLeft = GetUpdatesLeft();
+            UpdateButton.Text = $"Update ({5 - App.Globals.UpdateCount})";
 
-            if (!string.IsNullOrEmpty(UserId) && App.Globals.UpdateCount == 0) 
+            if (App.Globals.CurrentUser == null && !string.IsNullOrEmpty(UserId) && App.Globals.UpdateCount == 0)
             {
                 App.Globals.CurrentUser = await C2API_Service.GetUserInfo(UserId);
             }
-
-            if(App.Globals.CurrentUser != null) 
-            {
-                SetProfileContentProperties(App.Globals.CurrentUser);
-            }
-        }
-
-        private string GetUpdatesLeft()
-        {
-            int updatesLeft = 5 - App.Globals.UpdateCount;
-            return $"Update ({updatesLeft})";
+            SetProfileContentProperties(App.Globals.CurrentUser);
         }
 
         private void SetProfileContentProperties(User user) 
         {
+            if (user == null) 
+            {
+                UpdateButton.Text = "Update While In-Game";
+                return; 
+            }
             user.GravatarHash = C2API_Service.GravatarFromHash(user.GravatarHash);
             SetUser(user);
-        }
-
-        private bool CanUpdate()
-        {
-            return (App.Globals.UpdateCount < 5);
         }
 
         public async Task UpdateProfileContent()
         {
             while (string.IsNullOrEmpty(UserId)) 
             {
-                await Task.Delay(500);
                 string result = await C2API_Service.GetUserIdFromGame();
                 if (!string.IsNullOrEmpty(result))
                 {
@@ -70,15 +59,16 @@ namespace Cultris_II.ViewModels.Pages
                     UserId = result;
                     break;
                 }
+                await Task.Delay(5000);
             }
 
-            if(CanUpdate())
+            if(App.Globals.UpdateCount < 5)
             {
                 App.Globals.CurrentUser = await C2API_Service.GetUserInfo(UserId);
                 App.Globals.UpdateCount++;
                 SetProfileContentProperties(App.Globals.CurrentUser);
-                UpdateProfile.ChangeCanExecute();
-                UpdatesLeft = GetUpdatesLeft();
+                UpdateButton.Text = $"Update ({5 - App.Globals.UpdateCount})";
+                UpdateButton.IsEnabled = App.Globals.UpdateCount < 5;
             }
         }
     }

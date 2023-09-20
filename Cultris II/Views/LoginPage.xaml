@@ -20,8 +20,10 @@
                 Placeholder="password"
                 Text="{Binding Password}" />
             <Button
-                Command="{Binding LoginCommand}"
+                BackgroundColor="{Binding LoginButton.BackgroundColor, Mode=TwoWay}"
+                Command="{Binding LoginButton.Command}"
                 Text="Login"
+                TextColor="{Binding LoginButton.TextColor}"
                 VerticalOptions="Center" />
         </StackLayout>
     </ContentPage.Content>

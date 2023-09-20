@@ -18,6 +18,16 @@ namespace Cultris_II.Views.Navigation
             FlyoutPage.ListView.ItemSelected += ListView_ItemSelected;
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            var loginPage = Navigation.NavigationStack.FirstOrDefault(p => p is LoginPage);
+            if (loginPage != null)
+            {
+                Navigation.RemovePage(loginPage);
+            }
+        }
+
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem is FPFlyoutMenuItem item)

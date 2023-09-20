@@ -91,9 +91,10 @@
             </ScrollView>
             <Button
                 Margin="0,0,0,30"
-                BackgroundColor="{Binding FUFButtonColor}"
-                Command="{Binding FUFButtonCommand}"
-                Text="{Binding FUFButtonText}"
+                BackgroundColor="{Binding FUFButton.BackgroundColor}"
+                Command="{Binding FUFButton.Command}"
+                Text="{Binding FUFButton.Text}"
+                TextColor="{Binding FUFButton.TextColor}"
                 VerticalOptions="EndAndExpand" />
         </StackLayout>
     </ContentPage.Content>

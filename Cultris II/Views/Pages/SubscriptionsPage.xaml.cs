@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cultris_II.ViewModels.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,12 @@ namespace Cultris_II.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SubscriptionsPage : ContentPage
     {
+        readonly SubscriptionVM vm;
         public SubscriptionsPage()
         {
             InitializeComponent();
+            vm = new SubscriptionVM();
+            BindingContext = vm;
         }
     }
 }

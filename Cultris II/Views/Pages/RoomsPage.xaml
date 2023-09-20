@@ -16,7 +16,7 @@
                         <StackLayout x:DataType="model:Room">
                             <RelativeLayout>
                                 <Image
-                                    Aspect="AspectFill"
+                                    Aspect="Fill"
                                     RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
                                                                                            Property=Height}"
                                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,

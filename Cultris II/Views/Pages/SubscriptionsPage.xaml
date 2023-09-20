@@ -5,53 +5,62 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ContentPage.Content>
         <Grid
-            BackgroundColor="Blue"
-            ColumnDefinitions="*,120"
-            ColumnSpacing="20"
-            HorizontalOptions="Center"
-            RowDefinitions="Auto,Auto,Auto,Auto,Auto"
-            RowSpacing="20"
-            VerticalOptions="Center">
+            Margin="0,50,0,50"
+            HorizontalOptions="Fill"
+            RowDefinitions="*,*,*,*,*"
+            RowSpacing="30"
+            VerticalOptions="Fill">
 
-            <Label
-                Grid.Row="0"
-                Grid.Column="0"
-                BackgroundColor="Red"
-                HorizontalOptions="EndAndExpand"
-                Text="Professional Battlefield"
-                VerticalOptions="Center" />
+            <AbsoluteLayout Grid.Row="0">
+                <Image Aspect="Fill" Source="ProB" />
+                <Button
+                    AbsoluteLayout.LayoutBounds="1,0,0.4,0.5"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="Purple"
+                    FontSize="Header"
+                    Text="Professional Battlefield"
+                    TextColor="White" />
+            </AbsoluteLayout>
 
-            <Label
-                Grid.Row="1"
-                Grid.Column="0"
-                BackgroundColor="Red"
-                HorizontalOptions="EndAndExpand"
-                Text="Veteran Lounge"
-                VerticalOptions="Center" />
+            <AbsoluteLayout Grid.Row="1">
+                <Image Aspect="Fill" Source="VetL" />
+                <Button
+                    AbsoluteLayout.LayoutBounds="1,0,0.4,0.5"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="Purple"
+                    Text="Professional Battlefield" />
+            </AbsoluteLayout>
 
-            <Label
-                Grid.Row="2"
-                Grid.Column="0"
-                BackgroundColor="Red"
-                HorizontalOptions="EndAndExpand"
-                Text="Beginner Party"
-                VerticalOptions="Center" />
+            <AbsoluteLayout Grid.Row="2">
+                <Image Aspect="Fill" Source="BeginP" />
+                <Button
+                    AbsoluteLayout.LayoutBounds="1,0,0.4,0.5"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="Purple"
+                    Text="Professional Battlefield" />
+            </AbsoluteLayout>
 
-            <Label
-                Grid.Row="3"
-                Grid.Column="0"
-                BackgroundColor="Red"
-                HorizontalOptions="EndAndExpand"
-                Text="Cheesemageddon"
-                VerticalOptions="Center" />
+            <AbsoluteLayout Grid.Row="3">
+                <Image Aspect="Fill" Source="CheeseMageddon" />
+                <Button
+                    AbsoluteLayout.LayoutBounds="1,0,0.4,0.5"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="Purple"
+                    Text="Professional Battlefield" />
+            </AbsoluteLayout>
 
-            <Label
-                Grid.Row="4"
-                Grid.Column="0"
-                BackgroundColor="Red"
-                HorizontalOptions="EndAndExpand"
-                Text="Teams!"
-                VerticalOptions="Center" />
+            <AbsoluteLayout Grid.Row="4">
+                <Image
+                    AbsoluteLayout.LayoutBounds="0.3,0.5,0.2,0.4"
+                    AbsoluteLayout.LayoutFlags="All"
+                    Aspect="Fill"
+                    Source="CheeseMageddon" />
+                <Button
+                    AbsoluteLayout.LayoutBounds="1,0,0.4,0.5"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="Purple"
+                    Text="Professional Battlefield" />
+            </AbsoluteLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

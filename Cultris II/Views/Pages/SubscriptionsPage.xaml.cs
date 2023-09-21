@@ -20,5 +20,11 @@ namespace Cultris_II.Views
             vm = new SubscriptionVM();
             BindingContext = vm;
         }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await vm.LoadSubscriptions();
+        }
     }
 }

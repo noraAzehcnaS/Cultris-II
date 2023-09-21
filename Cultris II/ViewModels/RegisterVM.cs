@@ -2,6 +2,7 @@
 using Cultris_II.ViewModels.Base;
 using Cultris_II.Views.Navigation;
 using Xamarin.Forms;
+using static Cultris_II.ViewModels.Base.ButtonVM;
 
 namespace Cultris_II.ViewModels
 {
@@ -11,14 +12,15 @@ namespace Cultris_II.ViewModels
         public string Username
         {
             get => username;
-            set => SetProperty(ref username, value, "", RegisterCommand.ChangeCanExecute);
+            set => SetProperty(ref username, value, "", () => RegisterButton.IsEnabled = CanRegister());
         }
 
-        public Command RegisterCommand { get; }
+        public ButtonVM RegisterButton { get; set; }
+        private readonly ButtonSettings registerBtnSettings = new ButtonSettings { Text = "Register", TextColor = Color.White, BackgroundColor = Color.Purple };
 
         public RegisterVM()
         {
-            RegisterCommand = new Command(OnRegisterClicked, CanRegister);
+            RegisterButton = new ButtonVM { Settings = registerBtnSettings, ActionCommand = _=> OnRegisterClicked() , IsEnabled = false};
         }
         private bool CanRegister() => !string.IsNullOrEmpty(Username);
         private void OnRegisterClicked()

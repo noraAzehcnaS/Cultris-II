@@ -2,7 +2,9 @@
 <ContentPage
     x:Class="Cultris_II.Views.SubscriptionsPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Cultris_II.ViewModels.Pages"
+    x:DataType="pages:SubscriptionVM">
     <ContentPage.Content>
         <Grid
             Margin="0,50,0,50"
@@ -10,56 +12,64 @@
             RowDefinitions="*,*,*,*,*"
             RowSpacing="30"
             VerticalOptions="Fill">
-
             <AbsoluteLayout Grid.Row="0">
                 <Image Aspect="Fill" Source="ProB" />
                 <Button
                     AbsoluteLayout.LayoutBounds="1,0,0.4,0.5"
                     AbsoluteLayout.LayoutFlags="All"
-                    BackgroundColor="Purple"
+                    BackgroundColor="{Binding ProBattleBtn.BackgroundColor, Mode=TwoWay}"
+                    Command="{Binding ProBattleBtn.Command}"
                     FontSize="Header"
-                    Text="Professional Battlefield"
-                    TextColor="White" />
+                    Text="{Binding ProBattleBtn.Text}"
+                    TextColor="{Binding ProBattleBtn.TextColor}" />
             </AbsoluteLayout>
 
             <AbsoluteLayout Grid.Row="1">
                 <Image Aspect="Fill" Source="VetL" />
                 <Button
-                    AbsoluteLayout.LayoutBounds="1,0,0.4,0.5"
+                    AbsoluteLayout.LayoutBounds="1,0,0.4,0.35"
                     AbsoluteLayout.LayoutFlags="All"
-                    BackgroundColor="Purple"
-                    Text="Professional Battlefield" />
+                    BackgroundColor="{Binding VetLoungeBtn.BackgroundColor, Mode=TwoWay}"
+                    Command="{Binding VetLoungeBtn.Command}"
+                    FontSize="Header"
+                    Text="{Binding VetLoungeBtn.Text}"
+                    TextColor="{Binding VetLoungeBtn.TextColor}" />
             </AbsoluteLayout>
 
             <AbsoluteLayout Grid.Row="2">
                 <Image Aspect="Fill" Source="BeginP" />
                 <Button
-                    AbsoluteLayout.LayoutBounds="1,0,0.4,0.5"
+                    AbsoluteLayout.LayoutBounds="1,0,0.4,0.35"
                     AbsoluteLayout.LayoutFlags="All"
-                    BackgroundColor="Purple"
-                    Text="Professional Battlefield" />
+                    BackgroundColor="{Binding BeginnerPartyBtn.BackgroundColor, Mode=TwoWay}"
+                    Command="{Binding BeginnerPartyBtn.Command}"
+                    FontSize="Header"
+                    Text="{Binding BeginnerPartyBtn.Text}"
+                    TextColor="{Binding BeginnerPartyBtn.TextColor}" />
             </AbsoluteLayout>
 
             <AbsoluteLayout Grid.Row="3">
                 <Image Aspect="Fill" Source="CheeseMageddon" />
                 <Button
-                    AbsoluteLayout.LayoutBounds="1,0,0.4,0.5"
+                    AbsoluteLayout.LayoutBounds="1,0,0.4,0.35"
                     AbsoluteLayout.LayoutFlags="All"
-                    BackgroundColor="Purple"
-                    Text="Professional Battlefield" />
+                    BackgroundColor="{Binding CheeseMagaddonBtn.BackgroundColor, Mode=TwoWay}"
+                    Command="{Binding CheeseMagaddonBtn.Command}"
+                    FontSize="Header"
+                    Text="{Binding CheeseMagaddonBtn.Text}"
+                    TextColor="{Binding CheeseMagaddonBtn.TextColor}" />
             </AbsoluteLayout>
 
             <AbsoluteLayout Grid.Row="4">
-                <Image
-                    AbsoluteLayout.LayoutBounds="0.3,0.5,0.2,0.4"
-                    AbsoluteLayout.LayoutFlags="All"
-                    Aspect="Fill"
-                    Source="CheeseMageddon" />
+                <Image Aspect="Fill" Source="Teams" />
                 <Button
-                    AbsoluteLayout.LayoutBounds="1,0,0.4,0.5"
+                    AbsoluteLayout.LayoutBounds="1,0,0.4,0.35"
                     AbsoluteLayout.LayoutFlags="All"
-                    BackgroundColor="Purple"
-                    Text="Professional Battlefield" />
+                    BackgroundColor="{Binding TeamsBtn.BackgroundColor, Mode=TwoWay}"
+                    Command="{Binding TeamsBtn.Command}"
+                    FontSize="Header"
+                    Text="{Binding TeamsBtn.Text}"
+                    TextColor="{Binding TeamsBtn.TextColor}" />
             </AbsoluteLayout>
         </Grid>
     </ContentPage.Content>

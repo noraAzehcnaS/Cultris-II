@@ -78,10 +78,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomRenderers\C2_EntryRenderer.cs" />
+    <Compile Include="Dependencies\DataSource.cs" />
     <Compile Include="Dependencies\FireAuth.cs" />
+    <Compile Include="Dependencies\ForegroundService.cs" />
     <Compile Include="Dependencies\Helpers\FirebaseAccess.cs" />
     <Compile Include="Dependencies\Helpers\FirebaseListener.cs" />
     <Compile Include="Dependencies\FireStore.cs" />
+    <Compile Include="Dependencies\INotification.cs" />
+    <Compile Include="Dependencies\NotificationHelper.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -15,8 +15,10 @@
                 Placeholder="Your In-Game Username"
                 Text="{Binding Username}" />
             <Button
-                Command="{Binding RegisterCommand}"
-                Text="Register"
+                BackgroundColor="{Binding RegisterButton.BackgroundColor, Mode=TwoWay}"
+                Command="{Binding RegisterButton.Command}"
+                Text="{Binding RegisterButton.Text}"
+                TextColor="{Binding RegisterButton.TextColor}"
                 VerticalOptions="Center" />
         </StackLayout>
     </ContentPage.Content>

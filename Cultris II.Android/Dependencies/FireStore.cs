@@ -79,5 +79,26 @@ namespace Cultris_II.Droid.Dependencies
             UserByAuthId().Update("playerId", userId);
             return true;
         }
+
+        public bool AddSubscription(Subscription sub)
+        {
+            Subscriptions().Document(sub.ToString()).Set(SubcriptionToField(sub));
+            return true;
+        }
+
+        public bool DeleteSubscription(Subscription sub)
+        {
+            Subscriptions().Document(sub.ToString()).Delete();
+            return true;
+        }
+
+        public async Task<List<Subscription>> GetSubscriptions()
+        {
+            var listener = new FirebaseListener<QuerySnapshot>();
+            Subscriptions().Get().AddOnCompleteListener(listener);
+            QuerySnapshot result = await listener.Task;
+
+            return SubcriptionsFromQuery(result);
+        }
     }
 }

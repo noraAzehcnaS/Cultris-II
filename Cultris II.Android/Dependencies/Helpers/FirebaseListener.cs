@@ -1,6 +1,5 @@
 ﻿
 using Android.Gms.Tasks;
-using System;
 using System.Threading.Tasks;
 
 namespace Cultris_II.Droid.Dependencies

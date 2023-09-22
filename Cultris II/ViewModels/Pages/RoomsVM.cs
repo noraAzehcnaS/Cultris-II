@@ -2,11 +2,7 @@
 using Cultris_II.Services;
 using Cultris_II.ViewModels.Base;
 using Cultris_II.Views.Modals;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -29,7 +25,7 @@ namespace Cultris_II.ViewModels.Pages
         public async Task LoadRooms()
         {
             Rooms.Clear();
-            session = await C2API_Service.GetSession();
+            session = await C2API_Service.GetLiveInfo();
             if(session != null && session.Rooms != null)
             {
                 foreach (Room room in session.Rooms)
@@ -65,18 +61,8 @@ namespace Cultris_II.ViewModels.Pages
         {
             if (room.Players > 0) 
             {
-                Navigation().PushModalAsync(new RoomModal(PlayersInRoom(room.Id)));
+                Navigation().PushModalAsync(new RoomModal(session.PlayersInRoom(room.Id)));
             }
-        }
-
-        private List<Player> PlayersInRoom(long roomId)
-        {
-            return 
-                session
-                .Players
-                .Where(p => p.Room.Equals(roomId))
-                .OrderByDescending(p => p.Currentscore)
-                .ToList();
         }
     }
 }

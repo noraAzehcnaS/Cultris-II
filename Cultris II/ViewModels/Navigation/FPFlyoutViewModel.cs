@@ -1,10 +1,7 @@
 ﻿using Cultris_II.Models.Navigation;
 using Cultris_II.Views;
 using Cultris_II.Views.Pages;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 
 namespace Cultris_II.ViewModels.Navigation
 {

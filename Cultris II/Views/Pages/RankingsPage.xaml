@@ -7,7 +7,7 @@
         <StackLayout>
             <Label
                 HorizontalOptions="CenterAndExpand"
-                Text="This Feature is under contruction"
+                Text="This Feature is under construction"
                 VerticalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage.Content>

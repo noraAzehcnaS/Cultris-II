@@ -1,7 +1,4 @@
 ﻿using Cultris_II.Models.C2API;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Cultris_II.ViewModels.Base
 {

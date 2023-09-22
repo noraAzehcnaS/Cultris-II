@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using static Cultris_II.ViewModels.Base.ButtonVM;
 
 namespace Cultris_II.ViewModels.Modals

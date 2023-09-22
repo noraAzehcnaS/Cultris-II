@@ -1,10 +1,7 @@
 ﻿using Cultris_II.Services;
 using Cultris_II.ViewModels.Base;
-using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using static Cultris_II.ViewModels.Base.ButtonVM;
 

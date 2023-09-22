@@ -54,7 +54,6 @@ namespace Cultris_II.ViewModels
                 {
                     if (await DataService.IsUsernameRegistered())
                     {
-                        ForegroundService.StartService(1,"Test",new TimeSpan(0,0,1));
                         await Navigation().PushAsync(new FP());
                     }
                     else

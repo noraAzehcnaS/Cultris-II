@@ -1,5 +1,4 @@
 ﻿using Cultris_II.Models.DataService;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;

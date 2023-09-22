@@ -1,5 +1,4 @@
-﻿
-namespace Cultris_II.Models.C2API
+﻿namespace Cultris_II.Models.C2API
 {
     public class User
     {

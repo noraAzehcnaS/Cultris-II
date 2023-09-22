@@ -1,7 +1,6 @@
 ﻿using Cultris_II.Models.C2API;
 using Cultris_II.Services;
 using Cultris_II.ViewModels.Base;
-using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using static Cultris_II.ViewModels.Base.ButtonVM;

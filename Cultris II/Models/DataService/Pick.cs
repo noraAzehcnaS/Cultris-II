@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Cultris_II.Models.DataService
+﻿namespace Cultris_II.Models.DataService
 {
     public class Pick
     {

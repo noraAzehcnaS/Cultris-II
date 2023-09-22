@@ -18,7 +18,6 @@ namespace Cultris_II.Services
 
         private static readonly HttpClient client = new HttpClient();
         public static async Task<string> GetUserIdFromGame() => GetUserIdFromSession(await DataService.GetUsername(), await GetLiveInfo());
-        public static async Task<Session> GetSession() => await GetLiveInfo();
 
         public static async Task<User> GetUserInfo(string userId)
         {
@@ -35,7 +34,7 @@ namespace Cultris_II.Services
         public static string GravatarFromHash(string hash) => (hash.StartsWith(GravatarAPI)) ? hash : $"{GravatarAPI}{hash}?s=800";
         public static string FlagFromCountry(string country) => (country.StartsWith(FlagAPI)) ? country : $"https://flagsapi.com/{country}/flat/64.png";
 
-        private static async Task<Session> GetLiveInfo()
+        public static async Task<Session> GetLiveInfo()
         {
             Uri uri = new Uri($"{API}{liveInfo}");
             HttpResponseMessage response = await client.GetAsync(uri);

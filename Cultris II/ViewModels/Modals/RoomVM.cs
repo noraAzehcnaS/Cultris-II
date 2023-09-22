@@ -2,10 +2,8 @@
 using Cultris_II.Services;
 using Cultris_II.ViewModels.Base;
 using Cultris_II.Views.Modals;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using Xamarin.Forms;
 
 namespace Cultris_II.ViewModels.Modals

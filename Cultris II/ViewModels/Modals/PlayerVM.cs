@@ -6,25 +6,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using static Cultris_II.ViewModels.Base.ButtonVM;
 
 namespace Cultris_II.ViewModels.Modals
 {
     public class PlayerVM : UserInfoVM
     {
-        private readonly string country;
-
-        private readonly ButtonSettings follow = new ButtonSettings {Text = "Follow", TextColor = Color.White, BackgroundColor = Color.Green };
-        private readonly ButtonSettings unfollow = new ButtonSettings { Text = "Unfollow", TextColor = Color.White, BackgroundColor = Color.Red };
-        private readonly ButtonSettings loading = new ButtonSettings { Text = "Loading Player Info", TextColor = Color.Black, BackgroundColor = Color.Gray };
-        public ButtonVM FUFButton { get; set; }
+        readonly string country;
+        private LazyButton _fufButton = new LazyButton();
+        public LazyButton FUFButton { get => _fufButton; set =>SetProperty(ref _fufButton, value); }
         public PlayerVM(Player player) 
         {
             UserId = player.Id.ToString();
             country = player.Country;
-            FUFButton = new ButtonVM { Settings = loading };
+            FUFButton.Text = "Loading Player";
+            FUFButton.BackgroundColor = Color.Purple;
         }
-
         public async Task LoadUser()
         {
             User user = await C2API_Service.GetUserInfo(UserId);
@@ -35,13 +31,11 @@ namespace Cultris_II.ViewModels.Modals
                 List<Pick>picks = await DataService.GetPicks();
                 if (picks.Any(pick => pick.PlayerId.Equals(user.UserId.ToString())))
                 {
-                    FUFButton.Settings = unfollow;
-                    FUFButton.ActionCommand = _ => UnfollowPlayer();
+                    FUFButton = new LazyButton(UnfollowPlayer, "Unfollow") { BackgroundColor = Color.Red };
                 }
                 else 
                 {
-                    FUFButton.Settings = follow;
-                    FUFButton.ActionCommand = _ => FollowPlayer();
+                    FUFButton = new LazyButton(FollowPlayer, "Follow");
                 }
             }
         }

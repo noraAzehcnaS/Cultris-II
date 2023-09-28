@@ -13,13 +13,11 @@ namespace Cultris_II.Views.Navigation
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FP : FlyoutPage
     {
-        private readonly SubscriptionService _service;
         public FP()
         {
             InitializeComponent();
             FlyoutPage.ListView.ItemSelected += ListView_ItemSelected;
-            _service = new SubscriptionService();
-            _service.StartService();
+            SubscriptionService.Start();
         }
 
         protected override void OnAppearing()

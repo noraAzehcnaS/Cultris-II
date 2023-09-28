@@ -22,7 +22,7 @@
             <Button
                 BackgroundColor="{Binding LoginButton.BackgroundColor, Mode=TwoWay}"
                 Command="{Binding LoginButton.Command}"
-                Text="Login"
+                Text="{Binding LoginButton.Text}"
                 TextColor="{Binding LoginButton.TextColor}"
                 VerticalOptions="Center" />
         </StackLayout>

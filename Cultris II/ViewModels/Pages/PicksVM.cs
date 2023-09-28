@@ -11,12 +11,11 @@ namespace Cultris_II.ViewModels.Pages
 {
     public class PicksVM : BaseVM
     {
-        public ObservableCollection<Player> Players { get; set; }
+        public ObservableCollection<Player> Players { get; set; } = new ObservableCollection<Player>();
         public Command<Player> PlayerTappedCommand { get; }
 
         public PicksVM()
         {
-            Players = new ObservableCollection<Player>();
             PlayerTappedCommand = new Command<Player>(PlayerTapped);
         }
 

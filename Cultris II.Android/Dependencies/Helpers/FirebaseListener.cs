@@ -7,7 +7,7 @@ namespace Cultris_II.Droid.Dependencies
     public class FirebaseListener<TResult> : Java.Lang.Object, IOnCompleteListener
         where TResult : class
     {
-        private readonly TaskCompletionSource<TResult> taskCompletionSource = new TaskCompletionSource<TResult>();
+        readonly TaskCompletionSource<TResult> taskCompletionSource = new TaskCompletionSource<TResult>();
         public Task<TResult> Task => taskCompletionSource.Task;
         public void OnComplete(Android.Gms.Tasks.Task task)
         {

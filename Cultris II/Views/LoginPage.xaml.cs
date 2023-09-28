@@ -8,10 +8,12 @@ namespace Cultris_II.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        readonly LoginVM vm;
         public LoginPage()
         {
             InitializeComponent();
-            BindingContext = new LoginVM();
+            vm = new LoginVM();
+            BindingContext = vm;
         }
 
         protected override void OnAppearing()
@@ -25,6 +27,7 @@ namespace Cultris_II.Views
                     Navigation.RemovePage(page);
                 }
             }
+            _ = vm.GetLogin();
         }
     }
 }

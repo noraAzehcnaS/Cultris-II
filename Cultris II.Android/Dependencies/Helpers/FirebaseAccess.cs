@@ -17,7 +17,7 @@ namespace Cultris_II.Droid.Dependencies.Helpers
         {
             List<Pick> picks = new List<Pick>();
             picks.Clear();
-            if (query.IsEmpty) { return picks; }
+            if (query.IsEmpty) return picks;
 
             foreach (var doc in query.Documents)
             {
@@ -37,7 +37,7 @@ namespace Cultris_II.Droid.Dependencies.Helpers
         {
             List<Subscription> subscriptions = new List<Subscription>();
             subscriptions.Clear();
-            if (query.IsEmpty) { return subscriptions; }
+            if (query.IsEmpty) return subscriptions;
 
             foreach (var doc in query.Documents)
             {

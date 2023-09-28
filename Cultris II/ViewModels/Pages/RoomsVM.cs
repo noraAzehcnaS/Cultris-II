@@ -11,13 +11,11 @@ namespace Cultris_II.ViewModels.Pages
     public class RoomsVM : BaseVM
     {
         private Session session;
-        public ObservableCollection<Room> Rooms { get; }
+        public ObservableCollection<Room> Rooms { get; } = new ObservableCollection<Room>();
         public Command LoadRoomsCommand { get; }
         public Command<Room> RoomTappedCommand { get; }
         public RoomsVM()
         {
-
-            Rooms = new ObservableCollection<Room>();
             LoadRoomsCommand = new Command(async () => await LoadRooms());
             RoomTappedCommand = new Command<Room>(RoomTapped);
         }

@@ -4,8 +4,8 @@ using Cultris_II.Views;
 using Cultris_II.Views.Navigation;
 using System;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
-using static Cultris_II.ViewModels.Base.ButtonVM;
 
 namespace Cultris_II.ViewModels
 {
@@ -24,18 +24,18 @@ namespace Cultris_II.ViewModels
             get => password;
             set => SetProperty(ref password, value,"", () => LoginButton.IsEnabled = CanLogin());
         }
-
-        private readonly ButtonSettings loginButtonSettings = new ButtonSettings { Text = "Login", TextColor = Color.White, BackgroundColor = Color.Green };
-        public ButtonVM LoginButton { get; set; }
+        public LazyButton LoginButton { get; set; }
 
         public LoginVM()
         {
-            LoginButton = new ButtonVM
-            {
-                Settings = loginButtonSettings,
-                ActionCommand = async _ => await OnLoginClicked(),
-                IsEnabled = false
-            };
+            LoginButton = new LazyButton(async () => await OnLoginClicked(), "Login") { IsEnabled = false };
+            SubscriptionService.Stop();
+        }
+
+        public async Task GetLogin()
+        {
+            Email = await SecureStorage.GetAsync("Email");
+            Password = await SecureStorage.GetAsync("Password");
         }
         private async Task OnLoginClicked()
         {
@@ -54,6 +54,8 @@ namespace Cultris_II.ViewModels
                 {
                     if (await DataService.IsUsernameRegistered())
                     {
+                        await SecureStorage.SetAsync("Email", email);
+                        await SecureStorage.SetAsync("Password", password);
                         await Navigation().PushAsync(new FP());
                     }
                     else

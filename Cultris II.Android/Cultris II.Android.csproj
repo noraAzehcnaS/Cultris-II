@@ -88,7 +88,7 @@
     <Compile Include="Dependencies\Helpers\FirebaseAccess.cs" />
     <Compile Include="Dependencies\Helpers\FirebaseListener.cs" />
     <Compile Include="Dependencies\FireStore.cs" />
-    <Compile Include="Dependencies\SubscriptionService.cs" />
+    <Compile Include="Dependencies\XamarinForegroundService.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

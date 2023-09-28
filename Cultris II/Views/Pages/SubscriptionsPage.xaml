@@ -7,70 +7,139 @@
     x:DataType="pages:SubscriptionVM">
     <ContentPage.Content>
         <Grid
-            Margin="0,50,0,50"
+            ColumnDefinitions="2*,1*"
+            ColumnSpacing="0"
             HorizontalOptions="Fill"
-            RowDefinitions="*,*,*,*,*"
-            RowSpacing="30"
-            VerticalOptions="Fill">
-            <AbsoluteLayout Grid.Row="0">
-                <Image Aspect="Fill" Source="ProB" />
+            RowDefinitions="1*,1*,1*,1*,1*"
+            RowSpacing="0">
+            <Image
+                Grid.Row="0"
+                Grid.Column="0"
+                Aspect="AspectFill"
+                Source="ProB" />
+            <StackLayout
+                Grid.Row="0"
+                Grid.Column="1"
+                BackgroundColor="Black"
+                VerticalOptions="Fill">
+                <Label
+                    Margin="20,20,0,0"
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Text="Professional Battlefield" />
+                <Label Margin="20,20,60,0" Text="Subscribe if you want to be notified when a player in the top 10 is in FFA!" />
                 <Button
-                    AbsoluteLayout.LayoutBounds="1,0,0.4,0.5"
-                    AbsoluteLayout.LayoutFlags="All"
-                    BackgroundColor="{Binding ProBattleBtn.BackgroundColor, Mode=TwoWay}"
-                    Command="{Binding ProBattleBtn.Command}"
+                    Margin="20"
+                    BackgroundColor="{Binding Buttons[0].Button.BackgroundColor, Mode=TwoWay}"
+                    Command="{Binding Buttons[0].Button.Command}"
                     FontSize="Header"
-                    Text="{Binding ProBattleBtn.Text}"
-                    TextColor="{Binding ProBattleBtn.TextColor}" />
-            </AbsoluteLayout>
+                    Text="{Binding Buttons[0].Button.Text}"
+                    TextColor="{Binding Buttons[0].Button.TextColor}"
+                    VerticalOptions="EndAndExpand" />
+            </StackLayout>
 
-            <AbsoluteLayout Grid.Row="1">
-                <Image Aspect="Fill" Source="VetL" />
+            <Image
+                Grid.Row="1"
+                Grid.Column="0"
+                Aspect="AspectFill"
+                Source="VetL" />
+            <StackLayout
+                Grid.Row="1"
+                Grid.Column="1"
+                BackgroundColor="Purple"
+                VerticalOptions="Fill">
+                <Label
+                    Margin="20,20,0,0"
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Text="Veteran Lounge" />
+                <Label Margin="20,20,60,0" Text="Subscribe if you want to be notified when 4 or more players are in FFA!" />
                 <Button
-                    AbsoluteLayout.LayoutBounds="1,0,0.4,0.35"
-                    AbsoluteLayout.LayoutFlags="All"
-                    BackgroundColor="{Binding VetLoungeBtn.BackgroundColor, Mode=TwoWay}"
-                    Command="{Binding VetLoungeBtn.Command}"
+                    Margin="20"
+                    BackgroundColor="{Binding Buttons[1].Button.BackgroundColor, Mode=TwoWay}"
+                    Command="{Binding Buttons[1].Button.Command}"
                     FontSize="Header"
-                    Text="{Binding VetLoungeBtn.Text}"
-                    TextColor="{Binding VetLoungeBtn.TextColor}" />
-            </AbsoluteLayout>
+                    Text="{Binding Buttons[1].Button.Text}"
+                    TextColor="{Binding Buttons[1].Button.TextColor}"
+                    VerticalOptions="EndAndExpand" />
+            </StackLayout>
 
-            <AbsoluteLayout Grid.Row="2">
-                <Image Aspect="Fill" Source="BeginP" />
+            <Image
+                Grid.Row="2"
+                Grid.Column="0"
+                Aspect="AspectFill"
+                Source="BeginP" />
+            <StackLayout
+                Grid.Row="2"
+                Grid.Column="1"
+                BackgroundColor="CadetBlue"
+                VerticalOptions="Fill">
+                <Label
+                    Margin="20,20,0,0"
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Text="Beginner Party" />
+                <Label Margin="20,20,60,0" Text="Subscribe if you want to be notified when 4 or more players are in Rookie Playground" />
                 <Button
-                    AbsoluteLayout.LayoutBounds="1,0,0.4,0.35"
-                    AbsoluteLayout.LayoutFlags="All"
-                    BackgroundColor="{Binding BeginnerPartyBtn.BackgroundColor, Mode=TwoWay}"
-                    Command="{Binding BeginnerPartyBtn.Command}"
+                    Margin="20"
+                    BackgroundColor="{Binding Buttons[2].Button.BackgroundColor, Mode=TwoWay}"
+                    Command="{Binding Buttons[2].Button.Command}"
                     FontSize="Header"
-                    Text="{Binding BeginnerPartyBtn.Text}"
-                    TextColor="{Binding BeginnerPartyBtn.TextColor}" />
-            </AbsoluteLayout>
+                    Text="{Binding Buttons[2].Button.Text}"
+                    TextColor="{Binding Buttons[2].Button.TextColor}"
+                    VerticalOptions="EndAndExpand" />
+            </StackLayout>
 
-            <AbsoluteLayout Grid.Row="3">
-                <Image Aspect="Fill" Source="CheeseMageddon" />
+            <Image
+                Grid.Row="3"
+                Grid.Column="0"
+                Aspect="AspectFill"
+                Source="CheeseMageddon" />
+            <StackLayout
+                Grid.Row="3"
+                Grid.Column="1"
+                BackgroundColor="DarkRed"
+                VerticalOptions="Fill">
+                <Label
+                    Margin="20,20,0,0"
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Text="CheeseMageddon" />
+                <Label Margin="20,20,60,0" Text="Subscribe if you want to be notified when 4 or more players are in Cheese Room" />
                 <Button
-                    AbsoluteLayout.LayoutBounds="1,0,0.4,0.35"
-                    AbsoluteLayout.LayoutFlags="All"
-                    BackgroundColor="{Binding CheeseMagaddonBtn.BackgroundColor, Mode=TwoWay}"
-                    Command="{Binding CheeseMagaddonBtn.Command}"
+                    Margin="20"
+                    BackgroundColor="{Binding Buttons[3].Button.BackgroundColor, Mode=TwoWay}"
+                    Command="{Binding Buttons[3].Button.Command}"
                     FontSize="Header"
-                    Text="{Binding CheeseMagaddonBtn.Text}"
-                    TextColor="{Binding CheeseMagaddonBtn.TextColor}" />
-            </AbsoluteLayout>
+                    Text="{Binding Buttons[3].Button.Text}"
+                    TextColor="{Binding Buttons[3].Button.TextColor}"
+                    VerticalOptions="EndAndExpand" />
+            </StackLayout>
 
-            <AbsoluteLayout Grid.Row="4">
-                <Image Aspect="Fill" Source="Teams" />
+            <Image
+                Grid.Row="4"
+                Grid.Column="0"
+                Aspect="AspectFill"
+                Source="Teams" />
+            <StackLayout
+                Grid.Row="4"
+                Grid.Column="1"
+                VerticalOptions="Fill">
+                <Label
+                    Margin="20,20,0,0"
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Text="Teams" />
+                <Label Margin="20,20,60,0" Text="Subscribe if you want to be notified when there is a team room with uneven players, they might need you!" />
                 <Button
-                    AbsoluteLayout.LayoutBounds="1,0,0.4,0.35"
-                    AbsoluteLayout.LayoutFlags="All"
-                    BackgroundColor="{Binding TeamsBtn.BackgroundColor, Mode=TwoWay}"
-                    Command="{Binding TeamsBtn.Command}"
+                    Margin="20"
+                    BackgroundColor="{Binding Buttons[4].Button.BackgroundColor, Mode=TwoWay}"
+                    Command="{Binding Buttons[4].Button.Command}"
                     FontSize="Header"
-                    Text="{Binding TeamsBtn.Text}"
-                    TextColor="{Binding TeamsBtn.TextColor}" />
-            </AbsoluteLayout>
+                    Text="{Binding Buttons[4].Button.Text}"
+                    TextColor="{Binding Buttons[4].Button.TextColor}"
+                    VerticalOptions="EndAndExpand" />
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

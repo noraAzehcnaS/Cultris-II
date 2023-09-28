@@ -7,7 +7,7 @@ namespace Cultris_II.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProfilePage : ContentPage
     {
-        private readonly ProfileVM viewModel;
+        readonly ProfileVM viewModel;
         public ProfilePage()
         {
             InitializeComponent();

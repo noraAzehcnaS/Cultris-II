@@ -10,12 +10,11 @@ namespace Cultris_II.ViewModels.Modals
 {
     public class RoomVM : BaseVM
     {
-        public ObservableCollection<Player> Players { get; set; }
+        public ObservableCollection<Player> Players { get; set; } = new ObservableCollection<Player>();
         public Command<Player> PlayerTappedCommand { get; }
 
         public RoomVM(List<Player> players) 
         {
-            Players = new ObservableCollection<Player>();
             foreach (Player p in players)
             {
                 p.Avatarhash = C2API_Service.GravatarFromHash(p.Avatarhash);

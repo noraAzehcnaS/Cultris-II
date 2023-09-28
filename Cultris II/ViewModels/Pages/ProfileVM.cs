@@ -2,25 +2,18 @@
 using Cultris_II.Services;
 using Cultris_II.ViewModels.Base;
 using System.Threading.Tasks;
-using Xamarin.Forms;
-using static Cultris_II.ViewModels.Base.ButtonVM;
 
 namespace Cultris_II.ViewModels.Pages
 {
     public class ProfileVM : UserInfoVM
     {
-        private readonly ButtonSettings updateButtonSettings = new ButtonSettings { TextColor = Color.White, BackgroundColor = Color.Green };
-        public ButtonVM UpdateButton { get; set; }
+        public LazyButton UpdateButton { get; set; }
 
         public ProfileVM()
         {
             Username = string.Empty;
             UserId = string.Empty;
-            UpdateButton = new ButtonVM
-            {
-                Settings = updateButtonSettings,
-                ActionCommand = async _ => await UpdateProfileContent()
-            };
+            UpdateButton = new LazyButton(async () => await UpdateProfileContent(), "Update");
         }
 
         public async Task SetProfileContent()

@@ -7,7 +7,7 @@
     x:DataType="pages:SubscriptionVM">
     <ContentPage.Content>
         <Grid
-            ColumnDefinitions="2*,1*"
+            ColumnDefinitions="3*,2*"
             ColumnSpacing="0"
             HorizontalOptions="Fill"
             RowDefinitions="1*,1*,1*,1*,1*"
@@ -23,19 +23,22 @@
                 BackgroundColor="Black"
                 VerticalOptions="Fill">
                 <Label
-                    Margin="20,20,0,0"
+                    Margin="10,10,10,0"
                     FontAttributes="Bold"
-                    FontSize="Large"
+                    FontSize="Header"
                     Text="Professional Battlefield" />
-                <Label Margin="20,20,60,0" Text="Subscribe if you want to be notified when a player in the top 10 is in FFA!" />
+                <Label
+                    Margin="10,0,10,0"
+                    FontSize="10"
+                    Text="Subscribe if you want to be notified when a player in the top 10 is in FFA!" />
                 <Button
-                    Margin="20"
+                    Margin="10,0,10,0"
                     BackgroundColor="{Binding Buttons[0].Button.BackgroundColor, Mode=TwoWay}"
                     Command="{Binding Buttons[0].Button.Command}"
-                    FontSize="Header"
+                    FontSize="10"
                     Text="{Binding Buttons[0].Button.Text}"
                     TextColor="{Binding Buttons[0].Button.TextColor}"
-                    VerticalOptions="EndAndExpand" />
+                    VerticalOptions="Center" />
             </StackLayout>
 
             <Image
@@ -49,19 +52,22 @@
                 BackgroundColor="Purple"
                 VerticalOptions="Fill">
                 <Label
-                    Margin="20,20,0,0"
+                    Margin="10,10,10,0"
                     FontAttributes="Bold"
-                    FontSize="Large"
+                    FontSize="Header"
                     Text="Veteran Lounge" />
-                <Label Margin="20,20,60,0" Text="Subscribe if you want to be notified when 4 or more players are in FFA!" />
+                <Label
+                    Margin="10,0,10,0"
+                    FontSize="10"
+                    Text="Subscribe if you want to be notified when 4 or more players are in FFA!" />
                 <Button
-                    Margin="20"
+                    Margin="10,0,10,0"
                     BackgroundColor="{Binding Buttons[1].Button.BackgroundColor, Mode=TwoWay}"
                     Command="{Binding Buttons[1].Button.Command}"
-                    FontSize="Header"
+                    FontSize="10"
                     Text="{Binding Buttons[1].Button.Text}"
                     TextColor="{Binding Buttons[1].Button.TextColor}"
-                    VerticalOptions="EndAndExpand" />
+                    VerticalOptions="Center" />
             </StackLayout>
 
             <Image
@@ -75,19 +81,22 @@
                 BackgroundColor="CadetBlue"
                 VerticalOptions="Fill">
                 <Label
-                    Margin="20,20,0,0"
+                    Margin="10,10,10,0"
                     FontAttributes="Bold"
-                    FontSize="Large"
+                    FontSize="Header"
                     Text="Beginner Party" />
-                <Label Margin="20,20,60,0" Text="Subscribe if you want to be notified when 4 or more players are in Rookie Playground" />
+                <Label
+                    Margin="10,0,10,0"
+                    FontSize="10"
+                    Text="Subscribe if you want to be notified when 4 or more players are in Rookie Playground" />
                 <Button
-                    Margin="20"
+                    Margin="10,0,10,0"
                     BackgroundColor="{Binding Buttons[2].Button.BackgroundColor, Mode=TwoWay}"
                     Command="{Binding Buttons[2].Button.Command}"
-                    FontSize="Header"
+                    FontSize="10"
                     Text="{Binding Buttons[2].Button.Text}"
                     TextColor="{Binding Buttons[2].Button.TextColor}"
-                    VerticalOptions="EndAndExpand" />
+                    VerticalOptions="Center" />
             </StackLayout>
 
             <Image
@@ -101,19 +110,22 @@
                 BackgroundColor="DarkRed"
                 VerticalOptions="Fill">
                 <Label
-                    Margin="20,20,0,0"
+                    Margin="10,10,10,0"
                     FontAttributes="Bold"
-                    FontSize="Large"
+                    FontSize="Header"
                     Text="CheeseMageddon" />
-                <Label Margin="20,20,60,0" Text="Subscribe if you want to be notified when 4 or more players are in Cheese Room" />
+                <Label
+                    Margin="10,0,10,0"
+                    FontSize="10"
+                    Text="Subscribe if you want to be notified when 4 or more players are in Cheese Room" />
                 <Button
-                    Margin="20"
+                    Margin="10,0,10,0"
                     BackgroundColor="{Binding Buttons[3].Button.BackgroundColor, Mode=TwoWay}"
                     Command="{Binding Buttons[3].Button.Command}"
-                    FontSize="Header"
+                    FontSize="10"
                     Text="{Binding Buttons[3].Button.Text}"
                     TextColor="{Binding Buttons[3].Button.TextColor}"
-                    VerticalOptions="EndAndExpand" />
+                    VerticalOptions="Center" />
             </StackLayout>
 
             <Image
@@ -126,19 +138,22 @@
                 Grid.Column="1"
                 VerticalOptions="Fill">
                 <Label
-                    Margin="20,20,0,0"
+                    Margin="10,10,10,0"
                     FontAttributes="Bold"
-                    FontSize="Large"
+                    FontSize="Header"
                     Text="Teams" />
-                <Label Margin="20,20,60,0" Text="Subscribe if you want to be notified when there is a team room with uneven players, they might need you!" />
+                <Label
+                    Margin="10,0,10,0"
+                    FontSize="10"
+                    Text="Subscribe if you want to be notified when there is a team room with uneven players, they might need you!" />
                 <Button
-                    Margin="20"
+                    Margin="10,0,10,0"
                     BackgroundColor="{Binding Buttons[4].Button.BackgroundColor, Mode=TwoWay}"
                     Command="{Binding Buttons[4].Button.Command}"
-                    FontSize="Header"
+                    FontSize="10"
                     Text="{Binding Buttons[4].Button.Text}"
                     TextColor="{Binding Buttons[4].Button.TextColor}"
-                    VerticalOptions="EndAndExpand" />
+                    VerticalOptions="Center" />
             </StackLayout>
         </Grid>
     </ContentPage.Content>
